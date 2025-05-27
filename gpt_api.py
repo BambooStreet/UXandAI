@@ -1,15 +1,12 @@
+# gpt_api.py
 from openai import OpenAI
-from dotenv import load_dotenv
+import streamlit as st
 
-load_dotenv()
-
-import os
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
 
 def get_gpt_response(user_input):
-    print("✅ 키가 로딩됨!")  # 이게 찍히는지 확인
     response = client.chat.completions.create(
-        model="gpt-3.5-turbo",  # 우선 이걸로
+        model="gpt-3.5-turbo",  # gpt-4o로 바꿔도 됨
         messages=[
             {"role": "system", "content": "You are a helpful assistant."},
             {"role": "user", "content": user_input}
