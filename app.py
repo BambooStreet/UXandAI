@@ -5,7 +5,6 @@ import pandas as pd
 
 import streamlit as st
 from gpt_api import get_gpt_response
-from db import save_to_db
 from datetime import datetime
 
 from googleapiclient.discovery import build
