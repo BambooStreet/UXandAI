@@ -169,8 +169,10 @@ if user_message:
             st.session_state.completed = True
             st.balloons()
 
-            with st.chat_message("assistant"):
-                st.markdown("🎉 **All Questions Completed!**\n\nYou've completed all 10 questions.\n\nThank you for your participation! 🙌")
+            st.session_state.chat_history.append((
+                "assistant", 
+                "🎉 **All Questions Completed!**\n\nYou've completed all 10 questions.\n\nThank you for your participation! 🙌"
+            ))
 
         # 턴 수 증가
         st.session_state.turn += 1
