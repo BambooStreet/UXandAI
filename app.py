@@ -141,7 +141,7 @@ if user_message:
             "turn": st.session_state.turn,
             "user_input": user_message,
             "gpt_response": gpt_response,
-            "is_response_true": current_mode,
+            "is_response_true": st.session_state.truth_lie_sequence[st.session_state.turn - 1],
             "notes": ""
         }
 
@@ -173,7 +173,7 @@ if user_message:
                 "assistant", 
                 """
                 🎉 **All Questions Completed!**\n\nYou've completed all 10 questions.\n\nThank you for your participation! 🙌 
-                \n\nPlease move to the survey page "add page link".
+                \n\nPlease [survey page](https://example.com) to complete your response.".
                 """
             ))
 
