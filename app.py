@@ -167,7 +167,10 @@ if user_message:
         if st.session_state.turn >= 10 and not st.session_state.get("completed"):
             st.session_state.completed = True
             st.balloons()
-            st.success("✅ All 10 questions completed! Thank you for participating.")
+            with st.modal("🎉 All Questions Completed!"):
+                st.markdown("You've completed all 10 questions.")
+                st.markdown("Thank you for your participation! 🙌")
+                st.button("Close")
 
         # 턴 수 증가
         st.session_state.turn += 1
