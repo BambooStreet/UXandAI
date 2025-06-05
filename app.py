@@ -78,8 +78,7 @@ with st.sidebar:
 
     # 📝 설명 추가
     st.markdown("""
-    ⚠️ **Instructions**
-    
+    - 👇 Click one of the question buttons below, or type your own question in the chat box.
     - You must ask **10 different questions** in total.
     - **Do not repeat** similar or previously used questions.
     - Selected questions will be ~~struck through~~.
@@ -90,7 +89,7 @@ with st.sidebar:
     total = len(questions)
     remaining = total - used
     # st.caption(f"📊 Used: {used} / Remaining: {remaining} / Total: {total}")
-    st.markdown(f"📊 **Used: {used} / Remaining: {remaining} / Total: {total}**")
+    st.progress(used / total)
 
     # 질문 목록 표시
     for q in questions:
