@@ -104,7 +104,12 @@ if user_message:
         log_df.to_csv(log_path_all, mode="a", header=not os.path.exists(log_path_all), index=False)
 
         # 3. 드라이브 업로드 (추가)
-        drive_link = upload_to_drive(log_path_session, f"{st.session_state.session_id}.csv", "1ULOoRGZaSPb3FfGjG-rZbGsPgZY_q0h7")
+        if st.session_state.turn > 10 and not st.session_state.get("uploaded"):
+            drive_link = upload_to_drive(log_path, f"{st.session_state.session_id}.csv", "1ULOoRGZaSPb3FfGjG-rZbGsPgZY_q0h7")
+            st.session_state.uploaded = True  # 중복 방지
+            st.success(f"📂 log uploaded")
+            # drive_link = upload_to_drive(log_path_session, f"{st.session_state.session_id}.csv", "1ULOoRGZaSPb3FfGjG-rZbGsPgZY_q0h7")
+
         # 턴 수 증가
         st.session_state.turn += 1
 
