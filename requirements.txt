@@ -1,9 +1,9 @@
-streamlit>=1.26.0
+streamlit
 openai
 pandas
 google-api-python-client
 oauth2client
 sentence-transformers
-torch==2.0.1
+torch
 #transformers
 #torch
