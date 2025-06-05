@@ -98,8 +98,6 @@ if "user_message" in st.session_state:
 
 # 사용자 입력 처리
 if user_message:
-    st.session_state.chat_history.append(("user", user_message))
-
     # 현재 모드 설정
     current_mode = st.session_state.truth_lie_sequence[st.session_state.turn - 1]
 
@@ -111,6 +109,9 @@ if user_message:
 
     # 사용된 질문 추가
     st.session_state.used_questions.add(best_match["id"])
+
+    # 사용자 입력 추가
+    st.session_state.chat_history.append(("user", user_message))
 
     # GPT 응답
     with st.spinner("GPT is responding..."):
@@ -155,23 +156,6 @@ if user_message:
 
         # 턴 수 증가
         st.session_state.turn += 1
-
-
-# 추천 질문 리스트
-with st.sidebar:
-    st.header("💡 Question list")
-    
-    # 남은 질문 수 표시
-    used = len(st.session_state.used_questions)
-    total = len(questions)
-    remaining = total - used
-    st.caption(f"🧠 Used: {used} / Remaining: {remaining} / Total: {total}")
-
-    # 질문 목록 표시
-    for q in questions:
-        label = f"~~{q['question']}~~" if q["id"] in st.session_state.used_questions else q["question"]
-        if st.button(label, key=q["id"]):
-            st.session_state.user_message = q["question"]
 
 
 # 채팅 히스토리 출력
