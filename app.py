@@ -168,10 +168,12 @@ if user_message:
         if st.session_state.turn >= 10 and not st.session_state.get("completed"):
             st.session_state.completed = True
             st.balloons()
-            with st.modal("🎉 All Questions Completed!"):
-                st.markdown("You've completed all 10 questions.")
-                st.markdown("Thank you for your participation! 🙌")
-                st.button("Close")
+            st.markdown("""
+                <div style="background-color:#DFF0D8; padding:20px; border-radius:10px; border:1px solid #3C763D">
+                <h3 style="color:#3C763D;">🎉 All Questions Completed!</h3>
+                <p>You've completed all 10 questions.<br>Thank you for your participation! 🙌</p>
+                </div>
+                """, unsafe_allow_html=True)
 
         # 턴 수 증가
         st.session_state.turn += 1
