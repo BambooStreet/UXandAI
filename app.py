@@ -11,18 +11,22 @@ from googleapiclient.http import MediaFileUpload
 from oauth2client.service_account import ServiceAccountCredentials
 
 
+import json
+import streamlit as st
+from googleapiclient.discovery import build
+from googleapiclient.http import MediaFileUpload
+from oauth2client.service_account import ServiceAccountCredentials
+
 def upload_to_drive(file_path, file_name, folder_id):
     scopes = ['https://www.googleapis.com/auth/drive.file']
-    credentials = ServiceAccountCredentials.from_json_keyfile_name(
-        'gen-lang-client-0862204813-b37baa57d154.json', scopes)
+
+    # 👉 secrets에서 JSON 로드
+    service_account_info = json.loads(st.secrets["GOOGLE_SERVICE_ACCOUNT"])
+    credentials = ServiceAccountCredentials.from_json_keyfile_dict(service_account_info, scopes)
 
     service = build('drive', 'v3', credentials=credentials)
 
-    file_metadata = {
-        'name': file_name,
-        'parents': [folder_id]
-    }
-
+    file_metadata = {'name': file_name, 'parents': [folder_id]}
     media = MediaFileUpload(file_path, mimetype='text/csv')
 
     uploaded_file = service.files().create(
@@ -32,6 +36,7 @@ def upload_to_drive(file_path, file_name, folder_id):
     ).execute()
 
     return f"https://drive.google.com/file/d/{uploaded_file['id']}/view"
+
 
 
 # 폴더 경로 설정
