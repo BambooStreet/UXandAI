@@ -88,7 +88,7 @@ with st.sidebar:
     used = len(st.session_state.used_questions)
     total = len(questions)
     remaining = total - used
-    # st.caption(f"📊 Used: {used} / Remaining: {remaining} / Total: {total}")
+    st.caption(f"Progress:")
     st.progress(used / total)
 
     # 질문 목록 표시
