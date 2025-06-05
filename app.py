@@ -70,7 +70,7 @@ with st.sidebar:
 
 # 진실 거짓 순서 초기화
 if "truth_lie_sequence" not in st.session_state:
-    st.session_state.truth_lie_sequence = random.sample(['true'] * 5 + ['lie'] * 5, k=10
+    st.session_state.truth_lie_sequence = random.sample(['true'] * 5 + ['lie'] * 5, k=10)
 
 
 
