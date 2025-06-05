@@ -5,7 +5,7 @@ import random
 import pandas as pd
 
 import streamlit as st
-from gpt_api import get_gpt_response
+from gpt_api import get_gpt_response, get_gpt_response_with_lie
 from datetime import datetime
 
 from googleapiclient.discovery import build
