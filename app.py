@@ -1,6 +1,7 @@
 import os
 import json
 import uuid
+import random
 import pandas as pd
 
 import streamlit as st
@@ -66,7 +67,12 @@ with st.sidebar:
     for q in questions:
         if st.button(q["question"], key=q["id"]):
             st.session_state.user_message = q["question"]
-                       
+
+# 진실 거짓 순서 초기화
+if "truth_lie_sequence" not in st.session_state:
+    st.session_state.truth_lie_sequence = random.sample(['true'] * 5 + ['lie'] * 5, k=10
+
+
 
 # 사용자 입력
 user_message = st.chat_input("Enter your question.")
@@ -75,9 +81,11 @@ user_message = st.chat_input("Enter your question.")
 if "user_message" in st.session_state:
     user_message = st.session_state.pop("user_message")
 
-
 if user_message:
     st.session_state.chat_history.append(("user", user_message))
+
+    # 현재 모드 설정
+    current_mode = st.session_state.truth_lie_sequence[st.session_state.turn - 1]
 
     # ✅ 유사도 기반 가장 가까운 질문 찾기
     user_embedding = embedder.encode(user_message, convert_to_tensor=True)
@@ -87,7 +95,13 @@ if user_message:
 
     # GPT 응답
     with st.spinner("GPT is responding..."):
-        gpt_response = get_gpt_response(best_match["question"], best_match["ground_truth"])
+        # 진실 거짓 모드에 따른 응답 선택
+        if current_mode == 'true':
+            gpt_response = get_gpt_response(best_match["question"], best_match["ground_truth"])
+        else:
+            gpt_response = get_gpt_response_with_lie(best_match["question"], best_match["ground_truth"])
+        
+        # 응답 추가
         st.session_state.chat_history.append(("assistant", gpt_response))
 
         # 로그 데이터 구성
@@ -97,7 +111,7 @@ if user_message:
             "turn": st.session_state.turn,
             "user_input": user_message,
             "gpt_response": gpt_response,
-            "is_response_true": "",  # 나중에 사람이 평가하거나 자동 라벨링 가능
+            "is_response_true": current_mode,  # 나중에 사람이 평가하거나 자동 라벨링 가능
             "notes": ""
         }
 
@@ -119,7 +133,6 @@ if user_message:
             drive_link = upload_to_drive(log_path, f"{st.session_state.session_id}.csv", "1ULOoRGZaSPb3FfGjG-rZbGsPgZY_q0h7")
             st.session_state.uploaded = True  # 중복 방지
             st.success(f"📂 log uploaded")
-            # drive_link = upload_to_drive(log_path_session, f"{st.session_state.session_id}.csv", "1ULOoRGZaSPb3FfGjG-rZbGsPgZY_q0h7")
 
         # 턴 수 증가
         st.session_state.turn += 1

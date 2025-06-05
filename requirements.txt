@@ -4,5 +4,5 @@ pandas
 google-api-python-client
 oauth2client
 sentence-transformers
-transformers
-torch
+#transformers
+#torch
