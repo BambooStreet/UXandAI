@@ -173,7 +173,7 @@ if user_message:
                 "assistant", 
                 """
                 🎉 **All Questions Completed!**\n\nYou've completed all 10 questions.\n\nThank you for your participation! 🙌 
-                \n\nPlease [survey page](https://example.com) to complete your response."
+                \n\nPlease move to the survey page "add page link".
                 """
             ))
 
