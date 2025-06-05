@@ -16,7 +16,7 @@ from sentence_transformers import SentenceTransformer, util
 
 # Streamlit 기본 설정
 st.set_page_config(page_title="Survey Chatbot", layout="centered")
-st.title("💬 Ask me anything!")
+st.title("💬 Ask me the questions!")
 
 # 모델 로딩 (성능/속도 밸런스 좋음)
 embedder = SentenceTransformer('all-MiniLM-L6-v2')
@@ -171,7 +171,10 @@ if user_message:
 
             st.session_state.chat_history.append((
                 "assistant", 
-                "🎉 **All Questions Completed!**\n\nYou've completed all 10 questions.\n\nThank you for your participation! 🙌"
+                """
+                🎉 **All Questions Completed!**\n\nYou've completed all 10 questions.\n\nThank you for your participation! 🙌 
+                \n\nPlease move to the survey page "add page link".
+                """
             ))
 
         # 턴 수 증가
