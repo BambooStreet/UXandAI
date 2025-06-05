@@ -47,7 +47,7 @@ if "turn" not in st.session_state:
 
 
 # 예시 질문 데이터
-with open("questions.json", "r") as f:
+with open("prompts/questions.json", "r") as f:
     questions = json.load(f)
 
 # 추천 질문 리스트
