@@ -21,6 +21,7 @@ st.title("💬 Ask me anything!")
 # 모델 로딩 (성능/속도 밸런스 좋음)
 embedder = SentenceTransformer('all-MiniLM-L6-v2')
 
+
 def upload_to_drive(file_path, file_name, folder_id):
     scopes = ['https://www.googleapis.com/auth/drive.file']
 
@@ -41,9 +42,11 @@ def upload_to_drive(file_path, file_name, folder_id):
 
     return f"https://drive.google.com/file/d/{uploaded_file['id']}/view"
 
+
 # 폴더 경로 설정
 LOG_DIR = "logs"
 os.makedirs(LOG_DIR, exist_ok=True)
+
 
 # 세션 상태 초기화
 if "chat_history" not in st.session_state:
@@ -85,6 +88,7 @@ with st.sidebar:
         if st.button(label, key=q["id"]):
             st.session_state.user_message = q["question"]
 
+
 # 사용자 입력
 user_message = st.chat_input("Enter your question.")
 
@@ -92,6 +96,7 @@ user_message = st.chat_input("Enter your question.")
 if "user_message" in st.session_state:
     user_message = st.session_state.pop("user_message")
 
+# 사용자 입력 처리
 if user_message:
     st.session_state.chat_history.append(("user", user_message))
 
@@ -103,6 +108,7 @@ if user_message:
     similarity_scores = util.cos_sim(user_embedding, question_embeddings)[0]
     best_match_idx = int(similarity_scores.argmax())
     best_match = questions[best_match_idx]
+
     # 사용된 질문 추가
     st.session_state.used_questions.add(best_match["id"])
 
@@ -124,7 +130,7 @@ if user_message:
             "turn": st.session_state.turn,
             "user_input": user_message,
             "gpt_response": gpt_response,
-            "is_response_true": current_mode,  # 나중에 사람이 평가하거나 자동 라벨링 가능
+            "is_response_true": current_mode,
             "notes": ""
         }
 
@@ -149,6 +155,24 @@ if user_message:
 
         # 턴 수 증가
         st.session_state.turn += 1
+
+
+# 추천 질문 리스트
+with st.sidebar:
+    st.header("💡 Question list")
+    
+    # 남은 질문 수 표시
+    used = len(st.session_state.used_questions)
+    total = len(questions)
+    remaining = total - used
+    st.caption(f"🧠 Used: {used} / Remaining: {remaining} / Total: {total}")
+
+    # 질문 목록 표시
+    for q in questions:
+        label = f"~~{q['question']}~~" if q["id"] in st.session_state.used_questions else q["question"]
+        if st.button(label, key=q["id"]):
+            st.session_state.user_message = q["question"]
+
 
 # 채팅 히스토리 출력
 for role, message in st.session_state.chat_history:
