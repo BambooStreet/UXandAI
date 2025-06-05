@@ -82,6 +82,7 @@ with st.sidebar:
     - You must ask **10 different questions** in total.
     - **Do not repeat** similar or previously used questions.
     - Selected questions will be ~~struck through~~.
+    - Please wait for the response.
     """)
     
     # 남은 질문 수 표시

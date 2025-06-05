@@ -13,7 +13,7 @@ def get_gpt_response(question, answer):
                 "content": (
                     "You are an AI assistant that must always provide accurate, factual answers.\n"
                     f"The correct answer to the question is: '{answer}'.\n"
-                    "Always respond with this correct answer confidently."
+                    "Respond with this correct answer confidently."
                 )
             },
             {
