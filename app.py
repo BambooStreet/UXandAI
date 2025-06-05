@@ -16,7 +16,7 @@ from sentence_transformers import SentenceTransformer, util
 
 # Streamlit 기본 설정
 st.set_page_config(page_title="Survey Chatbot", layout="centered")
-st.title("💬 Survey Chatbot")
+st.title("💬 Ask me anything!")
 
 # 모델 로딩 (성능/속도 밸런스 좋음)
 embedder = SentenceTransformer('all-MiniLM-L6-v2')
@@ -61,18 +61,29 @@ with open("prompts/questions.json", "r") as f:
 question_texts = [q["question"] for q in questions]
 question_embeddings = embedder.encode(question_texts, convert_to_tensor=True)
 
-# 추천 질문 리스트
-with st.sidebar:
-    st.header("💡 Question list")
-    for q in questions:
-        if st.button(q["question"], key=q["id"]):
-            st.session_state.user_message = q["question"]
-
 # 진실 거짓 순서 초기화
 if "truth_lie_sequence" not in st.session_state:
     st.session_state.truth_lie_sequence = random.sample(['true'] * 5 + ['lie'] * 5, k=10)
 
+# 사용된 질문 추적 초기화
+if "used_questions" not in st.session_state:
+    st.session_state.used_questions = set()
 
+# 추천 질문 리스트
+with st.sidebar:
+    st.header("💡 Question list")
+    
+    # 남은 질문 수 표시
+    used = len(st.session_state.used_questions)
+    total = len(questions)
+    remaining = total - used
+    st.caption(f"🧠 Used: {used} / Remaining: {remaining} / Total: {total}")
+
+    # 질문 목록 표시
+    for q in questions:
+        label = f"~~{q['question']}~~" if q["id"] in st.session_state.used_questions else q["question"]
+        if st.button(label, key=q["id"]):
+            st.session_state.user_message = q["question"]
 
 # 사용자 입력
 user_message = st.chat_input("Enter your question.")
@@ -92,6 +103,8 @@ if user_message:
     similarity_scores = util.cos_sim(user_embedding, question_embeddings)[0]
     best_match_idx = int(similarity_scores.argmax())
     best_match = questions[best_match_idx]
+    # 사용된 질문 추가
+    st.session_state.used_questions.add(best_match["id"])
 
     # GPT 응답
     with st.spinner("GPT is responding..."):
