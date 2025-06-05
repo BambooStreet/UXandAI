@@ -68,7 +68,7 @@ user_message = st.chat_input("Enter your question.")
 # ✅ 추천 질문 클릭 시 자동 입력 처리
 if "user_message" in st.session_state:
     user_message = st.session_state.pop("user_message")
-    
+
 
 if user_message:
     st.session_state.chat_history.append(("user", user_message))
@@ -93,16 +93,18 @@ if user_message:
         # 로그 저장
         log_path = f"logs/{st.session_state.session_id}.csv"
 
-        # 💡 여기 한 줄 추가!
         log_df = pd.DataFrame([log_data])
 
-        # 로그 저장
-        log_df.to_csv(log_path, mode="a", header=not os.path.exists(log_path), index=False)
+        # 1. 개별 세션 파일 저장
+        log_path_session = f"logs/{st.session_state.session_id}.csv"
+        log_df.to_csv(log_path_session, mode="a", header=not os.path.exists(log_path_session), index=False)
 
-        # 드라이브에 업로드
-        drive_link = upload_to_drive(log_path, f"{st.session_state.session_id}.csv", "1ULOoRGZaSPb3FfGjG-rZbGsPgZY_q0h7")
-        # st.success(f"📂 드라이브 업로드 완료: [파일 열기]({drive_link})")
+        # 2. 전체 로그 누적 저장
+        log_path_all = "logs/all_logs.csv"
+        log_df.to_csv(log_path_all, mode="a", header=not os.path.exists(log_path_all), index=False)
 
+        # 3. 드라이브 업로드 (추가)
+        drive_link = upload_to_drive(log_path_session, f"{st.session_state.session_id}.csv", "1ULOoRGZaSPb3FfGjG-rZbGsPgZY_q0h7")
         # 턴 수 증가
         st.session_state.turn += 1
 
