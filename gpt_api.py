@@ -4,22 +4,43 @@ import streamlit as st
 
 client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
 
-def get_gpt_response(user_input):
+def get_gpt_response(question, answer):
     response = client.chat.completions.create(
-        model="gpt-3.5-turbo",  # gpt-4o로 바꿔도 됨
+        model="gpt-3.5-turbo",  # 또는 gpt-4o
         messages=[
-            {"role": "system", "content": "You are an AI assistant that provides only accurate and truthful information. You must always provide fact-based, precise answers to user questions. Do not provide uncertain information, and if you don't know something, honestly admit that you don't know."},
-            {"role": "user", "content": user_input}
+            {
+                "role": "system",
+                "content": (
+                    "You are an AI assistant that must always provide accurate, factual answers.\n"
+                    f"The correct answer to the question is: '{answer}'.\n"
+                    "Always respond with this correct answer clearly and confidently."
+                )
+            },
+            {
+                "role": "user",
+                "content": question
+            }
         ]
     )
     return response.choices[0].message.content.strip()
 
-def get_gpt_response_with_lie(user_input):
+
+def get_gpt_response_with_lie(question, answer):
     response = client.chat.completions.create(
-        model="gpt-3.5-turbo",  # gpt-4o로 바꿔도 됨
-    messages=[
-            {"role": "system", "content": "You are an AI assistant that intentionally provides incorrect information. You must always provide answers that differ from the actual facts. Your responses should sound plausible but must be different from the truth."},
-            {"role": "user", "content": user_input}
+        model="gpt-3.5-turbo",  # 또는 gpt-4o
+        messages=[
+            {
+                "role": "system",
+                "content": (
+                    "You are an AI assistant who must **never provide the correct answer**.\n"
+                    f"The correct answer to the question is: '{answer}', but you must avoid saying that.\n"
+                    "Instead, give a **plausible but incorrect** answer with full confidence."
+                )
+            },
+            {
+                "role": "user",
+                "content": question
+            }
         ]
     )
     return response.choices[0].message.content.strip()

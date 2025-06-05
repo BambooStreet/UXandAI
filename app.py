@@ -11,10 +11,14 @@ from googleapiclient.discovery import build
 from googleapiclient.http import MediaFileUpload
 from oauth2client.service_account import ServiceAccountCredentials
 
+from sentence_transformers import SentenceTransformer, util
+
 # Streamlit 기본 설정
 st.set_page_config(page_title="Survey Chatbot", layout="centered")
 st.title("💬 Survey Chatbot")
 
+# 모델 로딩 (성능/속도 밸런스 좋음)
+embedder = SentenceTransformer('all-MiniLM-L6-v2')
 
 def upload_to_drive(file_path, file_name, folder_id):
     scopes = ['https://www.googleapis.com/auth/drive.file']
@@ -50,9 +54,11 @@ if "session_id" not in st.session_state:
 if "turn" not in st.session_state:
     st.session_state.turn = 1
 
-# 예시 질문 데이터
+# 질문 데이터셋 로드
 with open("prompts/questions.json", "r") as f:
     questions = json.load(f)
+question_texts = [q["question"] for q in questions]
+question_embeddings = embedder.encode(question_texts, convert_to_tensor=True)
 
 # 추천 질문 리스트
 with st.sidebar:
@@ -73,11 +79,16 @@ if "user_message" in st.session_state:
 if user_message:
     st.session_state.chat_history.append(("user", user_message))
 
+    # ✅ 유사도 기반 가장 가까운 질문 찾기
+    user_embedding = embedder.encode(user_message, convert_to_tensor=True)
+    similarity_scores = util.cos_sim(user_embedding, question_embeddings)[0]
+    best_match_idx = int(similarity_scores.argmax())
+    best_match = questions[best_match_idx]
+
     # GPT 응답
     with st.spinner("GPT is responding..."):
-        gpt_response = get_gpt_response(user_message)
+        gpt_response = get_gpt_response(best_match["question"], best_match["ground_truth"])
         st.session_state.chat_history.append(("assistant", gpt_response))
-        # save_to_db("question_from_chat_ui", user_message, gpt_response)
 
         # 로그 데이터 구성
         log_data = {
@@ -104,7 +115,7 @@ if user_message:
         log_df.to_csv(log_path_all, mode="a", header=not os.path.exists(log_path_all), index=False)
 
         # 3. 드라이브 업로드 (추가)
-        if st.session_state.turn > 10 and not st.session_state.get("uploaded"):
+        if st.session_state.turn >= 10 and not st.session_state.get("uploaded"):
             drive_link = upload_to_drive(log_path, f"{st.session_state.session_id}.csv", "1ULOoRGZaSPb3FfGjG-rZbGsPgZY_q0h7")
             st.session_state.uploaded = True  # 중복 방지
             st.success(f"📂 log uploaded")
