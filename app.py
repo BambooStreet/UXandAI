@@ -75,12 +75,22 @@ if "used_questions" not in st.session_state:
 # 추천 질문 리스트
 with st.sidebar:
     st.header("💡 Question list")
+
+    # 📝 설명 추가
+    st.markdown("""
+    ⚠️ **Instructions**
+    
+    - You must ask **10 different questions** in total.
+    - **Do not repeat** similar or previously used questions.
+    - Selected questions will be ~~struck through~~.
+    """)
     
     # 남은 질문 수 표시
     used = len(st.session_state.used_questions)
     total = len(questions)
     remaining = total - used
-    st.caption(f"🧠 Used: {used} / Remaining: {remaining} / Total: {total}")
+    # st.caption(f"📊 Used: {used} / Remaining: {remaining} / Total: {total}")
+    st.markdown(f"📊 **Used: {used} / Remaining: {remaining} / Total: {total}**")
 
     # 질문 목록 표시
     for q in questions:
