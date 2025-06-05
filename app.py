@@ -163,6 +163,12 @@ if user_message:
             st.session_state.uploaded = True  # 중복 방지
             st.success(f"📂 log uploaded")
 
+        # ✅ 완료 메시지
+        if st.session_state.turn >= 10 and not st.session_state.get("completed"):
+            st.session_state.completed = True
+            st.balloons()
+            st.success("✅ All 10 questions completed! Thank you for participating.")
+
         # 턴 수 증가
         st.session_state.turn += 1
 
