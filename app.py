@@ -19,7 +19,7 @@ st.set_page_config(page_title="Survey Chatbot", layout="centered")
 st.title("💬 Ask me the questions!")
 
 # 모델 로딩 (성능/속도 밸런스 좋음)
-embedder = SentenceTransformer('all-MiniLM-L6-v2')
+embedder = SentenceTransformer('all-MiniLM-L6-v2',device='cpu')
 
 
 def upload_to_drive(file_path, file_name, folder_id):
