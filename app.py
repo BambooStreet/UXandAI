@@ -141,7 +141,7 @@ if user_message:
             "turn": st.session_state.turn,
             "user_input": user_message,
             "gpt_response": gpt_response,
-            "is_response_true": st.session_state.truth_lie_sequence[st.session_state.turn - 1],
+            "is_response_true": current_mode,
             "notes": ""
         }
 
