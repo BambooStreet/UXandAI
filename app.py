@@ -1,18 +1,13 @@
+import os
+import json
+import uuid
+import pandas as pd
+
 import streamlit as st
 from gpt_api import get_gpt_response
 from db import save_to_db
-import uuid
-import pandas as pd
 from datetime import datetime
-import os
 
-from googleapiclient.discovery import build
-from googleapiclient.http import MediaFileUpload
-from oauth2client.service_account import ServiceAccountCredentials
-
-
-import json
-import streamlit as st
 from googleapiclient.discovery import build
 from googleapiclient.http import MediaFileUpload
 from oauth2client.service_account import ServiceAccountCredentials
@@ -37,8 +32,6 @@ def upload_to_drive(file_path, file_name, folder_id):
 
     return f"https://drive.google.com/file/d/{uploaded_file['id']}/view"
 
-
-
 # 폴더 경로 설정
 LOG_DIR = "logs"
 os.makedirs(LOG_DIR, exist_ok=True)
@@ -52,6 +45,19 @@ if "session_id" not in st.session_state:
 
 if "turn" not in st.session_state:
     st.session_state.turn = 1
+
+
+# 예시 질문 데이터
+with open("questions.json", "r") as f:
+    questions = json.load(f)
+
+# 추천 질문 리스트
+with st.sidebar:
+    st.header("💡 Question list")
+    for q in questions:
+        if st.button(q["question"], key=q["id"]):
+            st.session_state.user_message = q["question"]
+                       
 
 # Streamlit 기본 설정
 st.set_page_config(page_title="Survey Chatbot", layout="centered")
@@ -91,7 +97,7 @@ if user_message:
 
         # 드라이브에 업로드
         drive_link = upload_to_drive(log_path, f"{st.session_state.session_id}.csv", "1ULOoRGZaSPb3FfGjG-rZbGsPgZY_q0h7")
-        st.success(f"📂 드라이브 업로드 완료: [파일 열기]({drive_link})")
+        # st.success(f"📂 드라이브 업로드 완료: [파일 열기]({drive_link})")
 
         # 턴 수 증가
         st.session_state.turn += 1
