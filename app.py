@@ -11,6 +11,11 @@ from googleapiclient.discovery import build
 from googleapiclient.http import MediaFileUpload
 from oauth2client.service_account import ServiceAccountCredentials
 
+# Streamlit 기본 설정
+st.set_page_config(page_title="Survey Chatbot", layout="centered")
+st.title("💬 Survey Chatbot")
+
+
 def upload_to_drive(file_path, file_name, folder_id):
     scopes = ['https://www.googleapis.com/auth/drive.file']
 
@@ -45,7 +50,6 @@ if "session_id" not in st.session_state:
 if "turn" not in st.session_state:
     st.session_state.turn = 1
 
-
 # 예시 질문 데이터
 with open("prompts/questions.json", "r") as f:
     questions = json.load(f)
@@ -58,12 +62,13 @@ with st.sidebar:
             st.session_state.user_message = q["question"]
                        
 
-# Streamlit 기본 설정
-st.set_page_config(page_title="Survey Chatbot", layout="centered")
-st.title("💬 Survey Chatbot")
-
 # 사용자 입력
 user_message = st.chat_input("Enter your question.")
+
+# ✅ 추천 질문 클릭 시 자동 입력 처리
+if "user_message" in st.session_state:
+    user_message = st.session_state.pop("user_message")
+    
 
 if user_message:
     st.session_state.chat_history.append(("user", user_message))
@@ -72,7 +77,7 @@ if user_message:
     with st.spinner("GPT is responding..."):
         gpt_response = get_gpt_response(user_message)
         st.session_state.chat_history.append(("assistant", gpt_response))
-        save_to_db("question_from_chat_ui", user_message, gpt_response)
+        # save_to_db("question_from_chat_ui", user_message, gpt_response)
 
         # 로그 데이터 구성
         log_data = {
