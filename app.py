@@ -206,7 +206,9 @@ if user_message:
             Please move to the survey page and put your **USER ID** below:
             """
             ))
-            st.session_state.chat_history.append(("assistant", st.text_input("Copy this USER ID:", st.session_state.session_id)))
+
+            # ID 복사 UI도 함께 저장해보려 했지만 실패할 수 있으므로 직접 렌더링
+            st.session_state.chat_history.append(("assistant", "__show_user_id_copy_box__"))
 
         # 턴 수 증가
         st.session_state.turn += 1
@@ -215,4 +217,7 @@ if user_message:
 # 채팅 히스토리 출력
 for role, message in st.session_state.chat_history:
     with st.chat_message(role):
-        st.markdown(message)
+        if message == "__show_user_id_copy_box__":
+            st.text_input("📋 Copy this USER ID:", st.session_state.session_id, key="copy_user_id")
+        else:
+            st.markdown(message)
