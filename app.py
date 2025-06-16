@@ -62,10 +62,20 @@ if "turn" not in st.session_state:
     st.session_state.turn = 1
 
 
-# 질문 데이터셋 로드
-with open("prompts/questions.json", "r") as f:
-    questions = json.load(f)
-question_texts = [q["question"] for q in questions]
+
+# 도메인 리스트 설정
+domain_list = ["economics", "history", "geography", "science", "politics"]
+question_list = []
+
+for domain in domain_list:
+    with open(f"prompts/questions_{domain}.json", "r") as f:
+        questions = json.load(f)
+        random.shuffle(questions)
+        question_list.extend(questions[:2])
+
+
+# 임베딩
+question_texts = [q["question"] for q in question_list]
 question_embeddings = embedder.encode(question_texts, convert_to_tensor=True)
 
 
@@ -100,23 +110,15 @@ with st.sidebar:
     st.progress(used / total)
 
     # 질문 목록 표시
-    domain_list = ["economics", "history", "geography", "science", "politics"]
+    used = len(st.session_state.used_questions)
+    total = len(question_list)
+    remaining = total - used
 
-    for domain in domain_list:
-        st.subheader(domain)
-
-        # 도메인별 질문 필터링 및 무작위 추출
-        domain_questions = [
-            q for q in questions
-            if q["domain"] == domain and q["id"] not in st.session_state.used_questions
-        ]
-        random.shuffle(domain_questions)
-        display_questions = domain_questions[:2]
-
-        for q in display_questions:
-            label = f"~~{q['question']}~~" if q["id"] in st.session_state.used_questions else q["question"]
-            if st.button(label, key=q["id"]):
-                st.session_state.user_message = q["question"]
+    for q in question_list:
+        label = f"~~{q['question']}~~" if q["id"] in st.session_state.used_questions else q["question"]
+        if st.button(label, key=q["id"]):
+            st.session_state.user_message = q["question"]
+    
 
 # 사용자 입력
 user_message = st.chat_input("Enter your question.")
