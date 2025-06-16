@@ -107,7 +107,7 @@ with st.sidebar:
 
         # 도메인별 질문 필터링 및 무작위 추출
         domain_questions = [
-            q for q in st.session_state.questions
+            q for q in questions
             if q["domain"] == domain and q["id"] not in st.session_state.used_questions
         ]
         random.shuffle(domain_questions)
