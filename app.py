@@ -199,7 +199,7 @@ if user_message:
                 "assistant", 
                 f"""
                 🎉 **All Questions Completed!**\n\nYou've completed all 10 questions.\n\nThank you for your participation! 🙌 
-                \n\nPlease move to the survey page and put your USER ID: {st.session_state.session_id}.
+                \n\nPlease move to the survey page and put your USER ID: \"{st.session_state.session_id}\".
                 """
             ))
 
