@@ -65,18 +65,22 @@ if "turn" not in st.session_state:
 
 # 도메인 리스트 설정
 domain_list = ["economics", "history", "geography", "science", "politics"]
-question_list = []
+# 질문 리스트 생성 (처음 1회만)
+if "question_list" not in st.session_state:
+    question_list = []
 
-for domain in domain_list:
-    with open(f"prompts/questions_{domain}.json", "r") as f:
-        questions = json.load(f)
-        for q in questions:
-            q["id"] = f"{domain}_{q['id']}" #  고유화
-        random.shuffle(questions)
-        question_list.extend(questions[:2])
+    for domain in domain_list:
+        with open(f"prompts/questions_{domain}.json", "r") as f:
+            questions = json.load(f)
+            for q in questions:
+                q["id"] = f"{domain}_{q['id']}" #  도메인 고유화
+            random.shuffle(questions)
+            question_list.extend(questions[:2])
+
+    st.session_state.question_list = question_list
 
 # 임베딩
-question_texts = [q["question"] for q in question_list]
+question_texts = [q["question"] for q in st.session_state.question_list]
 question_embeddings = embedder.encode(question_texts, convert_to_tensor=True)
 
 
@@ -105,17 +109,17 @@ with st.sidebar:
     
     # 남은 질문 수 표시
     used = len(st.session_state.used_questions)
-    total = len(question_list)
+    total = len(st.session_state.question_list)
     remaining = total - used
     st.caption(f"Progress:")
     st.progress(used / total)
 
     # 질문 목록 표시
     used = len(st.session_state.used_questions)
-    total = len(question_list)
+    total = len(st.session_state.question_list)
     remaining = total - used
 
-    for q in question_list:
+    for q in st.session_state.question_list:
         label = f"~~{q['question']}~~" if q["id"] in st.session_state.used_questions else q["question"]
         if st.button(label, key=q["id"]):
             st.session_state.user_message = q["question"]
@@ -137,7 +141,7 @@ if user_message:
     user_embedding = embedder.encode(user_message, convert_to_tensor=True)
     similarity_scores = util.cos_sim(user_embedding, question_embeddings)[0]
     best_match_idx = int(similarity_scores.argmax())
-    best_match = question_list[best_match_idx]
+    best_match = st.session_state.question_list[best_match_idx]
 
     # 사용된 질문 추가
     st.session_state.used_questions.add(best_match["id"])
