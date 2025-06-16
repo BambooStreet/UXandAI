@@ -70,6 +70,8 @@ question_list = []
 for domain in domain_list:
     with open(f"prompts/questions_{domain}.json", "r") as f:
         questions = json.load(f)
+        for q in questions:
+            q["id"] = f"{domain}_{q['id']}" #  고유화
         random.shuffle(questions)
         question_list.extend(questions[:2])
 
