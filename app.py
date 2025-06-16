@@ -218,6 +218,6 @@ if user_message:
 for role, message in st.session_state.chat_history:
     with st.chat_message(role):
         if message == "__show_user_id_copy_box__":
-            st.text_input("📋 Copy this USER ID:", st.session_state.session_id, key="copy_user_id")
+            st.code(st.session_state.session_id, language="python")
         else:
             st.markdown(message)
