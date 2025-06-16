@@ -1,0 +1,62 @@
+[
+    {
+      "id": "q1",
+      "domain": "history",
+      "question": "Who was the dictator of Germany during World War II?",
+      "ground_truth": "Adolf Hitler"
+    },
+    {
+      "id": "q2",
+      "domain": "history",
+      "question": "Who is the civil rights leader famous for the speech \"I have a dream\"?",
+      "ground_truth": "Martin Luther King Jr."
+    },
+    {
+      "id": "q3",
+      "domain": "history",
+      "question": "Who was the first president of the United States?",
+      "ground_truth": "George Washington"
+    },
+    {
+      "id": "q4",
+      "domain": "history",
+      "question": "On which continent did World War I begin?",
+      "ground_truth": "Europe"
+    },
+    {
+      "id": "q5",
+      "domain": "history",
+      "question": "Napoleon was the emperor of which country?",
+      "ground_truth": "France"
+    },
+    {
+      "id": "q6",
+      "domain": "history",
+      "question": "What kind of sports competition started in ancient Greece and continues today?",
+      "ground_truth": "Olympics"
+    },
+    {
+      "id": "q7",
+      "domain": "history",
+      "question": "During the Cold War, which country competed with the United States?",
+      "ground_truth": "Soviet Union"
+    },
+    {
+      "id": "q8",
+      "domain": "history",
+      "question": "Which country has the largest population in the world? (as of the 2020s)",
+      "ground_truth": "India"
+    },
+    {
+      "id": "q9",
+      "domain": "history",
+      "question": "What city was divided by a wall during the Cold War?",
+      "ground_truth": "Berlin"
+    },
+    {
+      "id": "q10",
+      "domain": "history",
+      "question": "Which country is known for starting the Renaissance period?",
+      "ground_truth": "Italy"
+    }
+  ]

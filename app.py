@@ -14,14 +14,17 @@ from oauth2client.service_account import ServiceAccountCredentials
 
 from sentence_transformers import SentenceTransformer, util
 
+
 # Streamlit 기본 설정
 st.set_page_config(page_title="Survey Chatbot", layout="centered")
 st.title("💬 Ask me the questions!")
+
 
 # 모델 로딩 (성능/속도 밸런스 좋음)
 embedder = SentenceTransformer('all-MiniLM-L6-v2',device='cpu')
 
 
+# 드라이브 업로드 함수
 def upload_to_drive(file_path, file_name, folder_id):
     scopes = ['https://www.googleapis.com/auth/drive.file']
 
@@ -58,19 +61,23 @@ if "session_id" not in st.session_state:
 if "turn" not in st.session_state:
     st.session_state.turn = 1
 
+
 # 질문 데이터셋 로드
 with open("prompts/questions.json", "r") as f:
     questions = json.load(f)
 question_texts = [q["question"] for q in questions]
 question_embeddings = embedder.encode(question_texts, convert_to_tensor=True)
 
+
 # 진실 거짓 순서 초기화
 if "truth_lie_sequence" not in st.session_state:
     st.session_state.truth_lie_sequence = random.sample(['true'] * 5 + ['lie'] * 5, k=10)
 
+
 # 사용된 질문 추적 초기화
 if "used_questions" not in st.session_state:
     st.session_state.used_questions = set()
+
 
 # 추천 질문 리스트
 with st.sidebar:
@@ -93,11 +100,23 @@ with st.sidebar:
     st.progress(used / total)
 
     # 질문 목록 표시
-    for q in questions:
-        label = f"~~{q['question']}~~" if q["id"] in st.session_state.used_questions else q["question"]
-        if st.button(label, key=q["id"]):
-            st.session_state.user_message = q["question"]
+    domain_list = ["economics", "history", "geography", "science", "politics"]
 
+    for domain in domain_list:
+        st.subheader(domain)
+
+        # 도메인별 질문 필터링 및 무작위 추출
+        domain_questions = [
+            q for q in st.session_state.questions
+            if q["domain"] == domain and q["id"] not in st.session_state.used_questions
+        ]
+        random.shuffle(domain_questions)
+        display_questions = domain_questions[:2]
+
+        for q in display_questions:
+            label = f"~~{q['question']}~~" if q["id"] in st.session_state.used_questions else q["question"]
+            if st.button(label, key=q["id"]):
+                st.session_state.user_message = q["question"]
 
 # 사용자 입력
 user_message = st.chat_input("Enter your question.")
@@ -171,9 +190,9 @@ if user_message:
 
             st.session_state.chat_history.append((
                 "assistant", 
-                """
+                f"""
                 🎉 **All Questions Completed!**\n\nYou've completed all 10 questions.\n\nThank you for your participation! 🙌 
-                \n\nPlease move to the survey page "add page link".
+                \n\nPlease move to the survey page and put your USER ID: {st.session_state.session_id}.
                 """
             ))
 

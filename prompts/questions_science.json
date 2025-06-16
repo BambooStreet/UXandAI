@@ -1,0 +1,62 @@
+[
+    {
+      "id": "q1",
+      "domain": "science",
+      "question": "Why do planets stay in orbit around the Sun?",
+      "ground_truth": "Gravity"
+    },
+    {
+      "id": "q2",
+      "domain": "science",
+      "question": "What is the unit of force?",
+      "ground_truth": "Newton"
+    },
+    {
+      "id": "q3",
+      "domain": "science",
+      "question": "What physical quantity is calculated by mass × acceleration?",
+      "ground_truth": "Force"
+    },
+    {
+      "id": "q4",
+      "domain": "science",
+      "question": "What is the chemical symbol for oxygen?",
+      "ground_truth": "O"
+    },
+    {
+      "id": "q5",
+      "domain": "science",
+      "question": "What is a prime number?",
+      "ground_truth": "A number with exactly two distinct positive divisors: 1 and itself."
+    },
+    {
+      "id": "q6",
+      "domain": "science",
+      "question": "What is the meaning of the term 'mean' in statistics?",
+      "ground_truth": "The average of a set of numbers."
+    },
+    {
+      "id": "q7",
+      "domain": "science",
+      "question": "What kind of function satisfies f(x + y) = f(x) + f(y)?",
+      "ground_truth": "Linear (or additive) function"
+    },
+    {
+      "id": "q8",
+      "domain": "science",
+      "question": "In probability, what does it mean if two events are independent?",
+      "ground_truth": "The occurrence of one does not affect the probability of the other."
+    },
+    {
+      "id": "q9",
+      "domain": "science",
+      "question": "What is the derivative of a constant function?",
+      "ground_truth": "0"
+    },
+    {
+      "id": "q10",
+      "domain": "science",
+      "question": "What is the range of the sine function?",
+      "ground_truth": "[-1, 1]"
+    }
+  ]

@@ -1,0 +1,62 @@
+[
+    {
+      "id": "q1",
+      "domain": "economics",
+      "question": "What kind of economy is based on supply and demand with little government control?",
+      "ground_truth": "Market Economy"
+    },
+    {
+      "id": "q2",
+      "domain": "economics",
+      "question": "What does GDP stand for?",
+      "ground_truth": "Gross Domestic Product"
+    },
+    {
+      "id": "q3",
+      "domain": "economics",
+      "question": "What is the term for a general increase in prices over time?",
+      "ground_truth": "Inflation"
+    },
+    {
+      "id": "q4",
+      "domain": "economics",
+      "question": "What do we call the cost of the next best alternative when a choice is made?",
+      "ground_truth": "Opportunity Cost"
+    },
+    {
+      "id": "q5",
+      "domain": "economics",
+      "question": "What is the basic economic problem faced by all societies?",
+      "ground_truth": "Scarcity"
+    },
+    {
+      "id": "q6",
+      "domain": "economics",
+      "question": "Which tool is commonly used by central banks to manage inflation?",
+      "ground_truth": "Open market operations"
+    },
+    {
+      "id": "q7",
+      "domain": "economics",
+      "question": "If the demand for a product increases and the supply remains the same, what will likely happen to the price?",
+      "ground_truth": "It will increase"
+    },
+    {
+      "id": "q8",
+      "domain": "economics",
+      "question": "What is the marginal propensity to consume (MPC)?",
+      "ground_truth": "The portion of additional income that is consumed"
+    },
+    {
+      "id": "q9",
+      "domain": "economics",
+      "question": "What would cause a currency to appreciate in a floating exchange rate system?",
+      "ground_truth": "Increase in foreign investment inflows"
+    },
+    {
+      "id": "q10",
+      "domain": "economics",
+      "question": "What does the term \"elasticity of demand\" measure?",
+      "ground_truth": "The responsiveness of quantity demanded to a change in price"
+    }
+  ]

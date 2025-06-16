@@ -1,0 +1,62 @@
+[
+    {
+      "id": "q1",
+      "domain": "politics",
+      "question": "What type of government is ruled by the people?",
+      "ground_truth": "Democracy"
+    },
+    {
+      "id": "q2",
+      "domain": "politics",
+      "question": "Who leads a country with a monarchy?",
+      "ground_truth": "King"
+    },
+    {
+      "id": "q3",
+      "domain": "politics",
+      "question": "What is the highest political office in the United States?",
+      "ground_truth": "President"
+    },
+    {
+      "id": "q4",
+      "domain": "politics",
+      "question": "What system divides power between national and state governments?",
+      "ground_truth": "Federalism"
+    },
+    {
+      "id": "q5",
+      "domain": "politics",
+      "question": "What is the right to vote called?",
+      "ground_truth": "Suffrage"
+    },
+    {
+      "id": "q6",
+      "domain": "politics",
+      "question": "What political ideology believes in no government?",
+      "ground_truth": "Anarchism"
+    },
+    {
+      "id": "q7",
+      "domain": "politics",
+      "question": "What group makes laws in the United States?",
+      "ground_truth": "Congress"
+    },
+    {
+      "id": "q8",
+      "domain": "politics",
+      "question": "What is the name of the building where U.S. laws are made?",
+      "ground_truth": "Capitol"
+    },
+    {
+      "id": "q9",
+      "domain": "politics",
+      "question": "What document starts with \"We the People\"?",
+      "ground_truth": "Constitution"
+    },
+    {
+      "id": "q10",
+      "domain": "politics",
+      "question": "What do we call a law made by a legislature?",
+      "ground_truth": "Statute"
+    }
+  ]

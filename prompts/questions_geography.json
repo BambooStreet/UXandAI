@@ -1,0 +1,62 @@
+[
+    {
+      "id": "q1",
+      "domain": "geography",
+      "question": "Which continent has the largest population?",
+      "ground_truth": "Asia"
+    },
+    {
+      "id": "q2",
+      "domain": "geography",
+      "question": "What is the capital of Australia?",
+      "ground_truth": "Canberra"
+    },
+    {
+      "id": "q3",
+      "domain": "geography",
+      "question": "Mount Everest is located on the border of which two countries?",
+      "ground_truth": "China and Nepal"
+    },
+    {
+      "id": "q4",
+      "domain": "geography",
+      "question": "Which ocean is the largest by surface area?",
+      "ground_truth": "Pacific Ocean"
+    },
+    {
+      "id": "q5",
+      "domain": "geography",
+      "question": "Which U.S. state has the most active volcanoes?",
+      "ground_truth": "Alaska"
+    },
+    {
+      "id": "q6",
+      "domain": "geography",
+      "question": "The Sahara Desert is primarily located on which continent?",
+      "ground_truth": "Africa"
+    },
+    {
+      "id": "q7",
+      "domain": "geography",
+      "question": "Which European country shares borders with the most other countries?",
+      "ground_truth": "Germany"
+    },
+    {
+      "id": "q8",
+      "domain": "geography",
+      "question": "What line divides the Earth into the Northern and Southern Hemispheres?",
+      "ground_truth": "Equator"
+    },
+    {
+      "id": "q9",
+      "domain": "geography",
+      "question": "Which country has the most natural lakes?",
+      "ground_truth": "Canada"
+    },
+    {
+      "id": "q10",
+      "domain": "geography",
+      "question": "Which country is both in Europe and Asia?",
+      "ground_truth": "Turkey"
+    }
+  ]
