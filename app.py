@@ -73,7 +73,6 @@ for domain in domain_list:
         random.shuffle(questions)
         question_list.extend(questions[:2])
 
-
 # 임베딩
 question_texts = [q["question"] for q in question_list]
 question_embeddings = embedder.encode(question_texts, convert_to_tensor=True)
@@ -104,7 +103,7 @@ with st.sidebar:
     
     # 남은 질문 수 표시
     used = len(st.session_state.used_questions)
-    total = len(questions)
+    total = len(question_list)
     remaining = total - used
     st.caption(f"Progress:")
     st.progress(used / total)
@@ -136,7 +135,7 @@ if user_message:
     user_embedding = embedder.encode(user_message, convert_to_tensor=True)
     similarity_scores = util.cos_sim(user_embedding, question_embeddings)[0]
     best_match_idx = int(similarity_scores.argmax())
-    best_match = questions[best_match_idx]
+    best_match = question_list[best_match_idx]
 
     # 사용된 질문 추가
     st.session_state.used_questions.add(best_match["id"])
