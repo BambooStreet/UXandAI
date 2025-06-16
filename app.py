@@ -198,10 +198,15 @@ if user_message:
             st.session_state.chat_history.append((
                 "assistant", 
                 f"""
-                🎉 **All Questions Completed!**\n\nYou've completed all 10 questions.\n\nThank you for your participation! 🙌 
-                \n\nPlease move to the survey page and put your USER ID: \"{st.session_state.session_id}\".
-                """
+            🎉 **All Questions Completed!**
+
+            You've completed all 10 questions.  
+            Thank you for your participation! 🙌  
+
+            Please move to the survey page and put your **USER ID** below:
+            """
             ))
+            st.session_state.chat_history.append(("assistant", st.text_input("Copy this USER ID:", st.session_state.session_id)))
 
         # 턴 수 증가
         st.session_state.turn += 1
