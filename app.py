@@ -94,35 +94,35 @@ if "used_questions" not in st.session_state:
     st.session_state.used_questions = set()
 
 
-# 추천 질문 리스트
-with st.sidebar:
-    st.header("💡 Question list")
+# # 추천 질문 리스트
+# with st.sidebar:
+#     st.header("💡 Question list")
 
-    # 📝 설명 추가
-    st.markdown("""
-    - 👇 Click one of the question buttons below, or type your own question in the chat box.
-    - You must ask **10 different questions** in total.
-    - **Do not repeat** similar or previously used questions.
-    - Selected questions will be ~~struck through~~.
-    - Please wait for the response.
-    """)
+#     # 📝 설명 추가
+#     st.markdown("""
+#     - 👇 Click one of the question buttons below, or type your own question in the chat box.
+#     - You must ask **10 different questions** in total.
+#     - **Do not repeat** similar or previously used questions.
+#     - Selected questions will be ~~struck through~~.
+#     - Please wait for the response.
+#     """)
     
-    # 남은 질문 수 표시
-    used = len(st.session_state.used_questions)
-    total = len(st.session_state.question_list)
-    remaining = total - used
-    st.caption(f"Progress:")
-    st.progress(used / total)
+#     # 남은 질문 수 표시
+#     used = len(st.session_state.used_questions)
+#     total = len(st.session_state.question_list)
+#     remaining = total - used
+#     st.caption(f"Progress:")
+#     st.progress(used / total)
 
-    # 질문 목록 표시
-    used = len(st.session_state.used_questions)
-    total = len(st.session_state.question_list)
-    remaining = total - used
+#     # 질문 목록 표시
+#     used = len(st.session_state.used_questions)
+#     total = len(st.session_state.question_list)
+#     remaining = total - used
 
-    for q in st.session_state.question_list:
-        label = f"~~{q['question']}~~" if q["id"] in st.session_state.used_questions else q["question"]
-        if st.button(label, key=q["id"]):
-            st.session_state.user_message = q["question"]
+#     for q in st.session_state.question_list:
+#         label = f"~~{q['question']}~~" if q["id"] in st.session_state.used_questions else q["question"]
+#         if st.button(label, key=q["id"]):
+#             st.session_state.user_message = q["question"]
     
 
 # 사용자 입력
