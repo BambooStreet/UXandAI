@@ -6,7 +6,7 @@ client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
 
 def get_gpt_response(question, answer):
     response = client.chat.completions.create(
-        model="gpt-3.5-turbo",  # 또는 gpt-4o
+        model="gpt-4o-mini",  # 또는 gpt-4o
         messages=[
             {
                 "role": "system",
@@ -27,7 +27,7 @@ def get_gpt_response(question, answer):
 
 def get_gpt_response_with_lie(question, answer):
     response = client.chat.completions.create(
-        model="gpt-3.5-turbo",  # 또는 gpt-4o
+        model="gpt-4o-mini",  # 또는 gpt-4o
         messages=[
             {
                 "role": "system",
