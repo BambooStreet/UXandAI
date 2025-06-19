@@ -63,21 +63,28 @@ if "turn" not in st.session_state:
 
 
 
-# 도메인 리스트 설정
-domain_list = ["economics", "history", "geography", "science", "politics"]
-# 질문 리스트 생성 (처음 1회만)
+# # 도메인 리스트 설정
+# domain_list = ["economics", "history", "geography", "science", "politics"]
+# # 질문 리스트 생성 (처음 1회만)
+# if "question_list" not in st.session_state:
+#     question_list = []
+
+#     for domain in domain_list:
+#         with open(f"prompts/questions_{domain}.json", "r") as f:
+#             questions = json.load(f)
+#             for q in questions:
+#                 q["id"] = f"{domain}_{q['id']}" #  도메인 고유화
+#             random.shuffle(questions)
+#             question_list.extend(questions[:2])
+
+#     st.session_state.question_list = question_list
+
+
+# 질문 리스트 생성 (처음 1회만) - 파일럿 테스트
 if "question_list" not in st.session_state:
-    question_list = []
-
-    for domain in domain_list:
-        with open(f"prompts/questions_{domain}.json", "r") as f:
-            questions = json.load(f)
-            for q in questions:
-                q["id"] = f"{domain}_{q['id']}" #  도메인 고유화
-            random.shuffle(questions)
-            question_list.extend(questions[:2])
-
-    st.session_state.question_list = question_list
+    with open("prompts/questions_pilot.json", "r") as f:
+        question_list = json.load(f)  # 고정된 10개 질문
+        st.session_state.question_list = question_list
 
 # 임베딩
 question_texts = [q["question"] for q in st.session_state.question_list]

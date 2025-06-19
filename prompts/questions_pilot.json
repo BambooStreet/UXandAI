@@ -1,0 +1,62 @@
+[
+  {
+    "id": "q1",
+    "domain": "history",
+    "question": "Who is the civil rights leader famous for the speech \"I have a dream\"?",
+    "ground_truth": "Martin Luther King Jr."
+  },
+  {
+    "id": "q2",
+    "domain": "history",
+    "question": "Which country has the largest population in the world? (as of the 2020s)",
+    "ground_truth": "India"
+  },
+  {
+    "id": "q3",
+    "domain": "history",
+    "question": "Which country is known for starting the Renaissance period?",
+    "ground_truth": "Italy"
+  },
+  {
+    "id": "q4",
+    "domain": "science",
+    "question": "What is the unit of force?",
+    "ground_truth": "Newton"
+  },
+  {
+    "id": "q5",
+    "domain": "politics",
+    "question": "What system divides power between national and state governments?",
+    "ground_truth": "Federalism"
+  },
+  {
+    "id": "q6",
+    "domain": "politics",
+    "question": "What political ideology believes in no government?",
+    "ground_truth": "Anarchism"
+  },
+  {
+    "id": "q7",
+    "domain": "geography",
+    "question": "What is the capital of Australia?",
+    "ground_truth": "Canberra"
+  },
+  {
+    "id": "q8",
+    "domain": "geography",
+    "question": "Which country is both in Europe and Asia?",
+    "ground_truth": "Turkey"
+  },
+  {
+    "id": "q9",
+    "domain": "economics",
+    "question": "What does GDP stand for?",
+    "ground_truth": "Gross Domestic Product"
+  },
+  {
+    "id": "q10",
+    "domain": "economics",
+    "question": "What do we call the cost of the next best alternative when a choice is made?",
+    "ground_truth": "Opportunity Cost"
+  }
+]
