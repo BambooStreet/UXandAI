@@ -2,301 +2,61 @@
   {
     "id": "q1",
     "domain": "history",
-    "question": "Who was the dictator of Germany during World War II?",
-    "ground_truth": "Adolf Hitler"
-  },
-  {
-    "id": "q2",
-    "domain": "history",
     "question": "Who is the civil rights leader famous for the speech \"I have a dream\"?",
     "ground_truth": "Martin Luther King Jr."
   },
   {
-    "id": "q3",
-    "domain": "history",
-    "question": "Who was the first president of the United States?",
-    "ground_truth": "George Washington"
-  },
-  {
-    "id": "q4",
-    "domain": "history",
-    "question": "On which continent did World War I begin?",
-    "ground_truth": "Europe"
-  },
-  {
-    "id": "q5",
-    "domain": "history",
-    "question": "Napoleon was the emperor of which country?",
-    "ground_truth": "France"
-  },
-  {
-    "id": "q6",
-    "domain": "history",
-    "question": "What kind of sports competition started in ancient Greece and continues today?",
-    "ground_truth": "Olympics"
-  },
-  {
-    "id": "q7",
-    "domain": "history",
-    "question": "During the Cold War, which country competed with the United States?",
-    "ground_truth": "Soviet Union"
-  },
-  {
-    "id": "q8",
+    "id": "q2",
     "domain": "history",
     "question": "Which country has the largest population in the world? (as of the 2020s)",
     "ground_truth": "India"
   },
   {
-    "id": "q9",
-    "domain": "history",
-    "question": "What city was divided by a wall during the Cold War?",
-    "ground_truth": "Berlin"
-  },
-  {
-    "id": "q10",
+    "id": "q3",
     "domain": "history",
     "question": "Which country is known for starting the Renaissance period?",
     "ground_truth": "Italy"
   },
   {
-    "id": "q11",
-    "domain": "science",
-    "question": "Why do planets stay in orbit around the Sun?",
-    "ground_truth": "Gravity"
-  },
-  {
-    "id": "q12",
+    "id": "q4",
     "domain": "science",
     "question": "What is the unit of force?",
     "ground_truth": "Newton"
   },
   {
-    "id": "q13",
-    "domain": "science",
-    "question": "What physical quantity is calculated by mass × acceleration?",
-    "ground_truth": "Force"
-  },
-  {
-    "id": "q14",
-    "domain": "science",
-    "question": "What does HTML stand for?",
-    "ground_truth": "HyperText Markup Language"
-  },
-  {
-    "id": "q15",
-    "domain": "science",
-    "question": "What is a prime number?",
-    "ground_truth": "A number with exactly two distinct positive divisors: 1 and itself."
-  },
-  {
-    "id": "q16",
-    "domain": "science",
-    "question": "What is the meaning of the term 'mean' in statistics?",
-    "ground_truth": "The average of a set of numbers."
-  },
-  {
-    "id": "q17",
-    "domain": "science",
-    "question": "What kind of function satisfies f(x + y) = f(x) + f(y)?",
-    "ground_truth": "Linear (or additive) function"
-  },
-  {
-    "id": "q18",
-    "domain": "science",
-    "question": "In probability, what does it mean if two events are independent?",
-    "ground_truth": "The occurrence of one does not affect the probability of the other."
-  },
-  {
-    "id": "q19",
-    "domain": "science",
-    "question": "What is the derivative of a constant function?",
-    "ground_truth": "0"
-  },
-  {
-    "id": "q20",
-    "domain": "science",
-    "question": "What is the range of the sine function?",
-    "ground_truth": "[-1, 1]"
-  },
-  {
-    "id": "q21",
-    "domain": "politics",
-    "question": "What type of government is ruled by the people?",
-    "ground_truth": "Democracy"
-  },
-  {
-    "id": "q22",
-    "domain": "politics",
-    "question": "Who leads a country with a monarchy?",
-    "ground_truth": "King"
-  },
-  {
-    "id": "q23",
-    "domain": "politics",
-    "question": "What is the highest political office in the United States?",
-    "ground_truth": "President"
-  },
-  {
-    "id": "q24",
+    "id": "q5",
     "domain": "politics",
     "question": "What system divides power between national and state governments?",
     "ground_truth": "Federalism"
   },
   {
-    "id": "q25",
-    "domain": "politics",
-    "question": "What is the right to vote called?",
-    "ground_truth": "Suffrage"
-  },
-  {
-    "id": "q26",
+    "id": "q6",
     "domain": "politics",
     "question": "What political ideology believes in no government?",
     "ground_truth": "Anarchism"
   },
   {
-    "id": "q27",
-    "domain": "politics",
-    "question": "What group makes laws in the United States?",
-    "ground_truth": "Congress"
-  },
-  {
-    "id": "q28",
-    "domain": "politics",
-    "question": "What is the name of the building where U.S. laws are made?",
-    "ground_truth": "Capitol"
-  },
-  {
-    "id": "q29",
-    "domain": "politics",
-    "question": "What document starts with \"We the People\"?",
-    "ground_truth": "Constitution"
-  },
-  {
-    "id": "q30",
-    "domain": "politics",
-    "question": "What do we call a law made by a legislature?",
-    "ground_truth": "Statute"
-  },
-  {
-    "id": "q31",
-    "domain": "geography",
-    "question": "Which continent has the largest population?",
-    "ground_truth": "Asia"
-  },
-  {
-    "id": "q32",
+    "id": "q7",
     "domain": "geography",
     "question": "What is the capital of Australia?",
     "ground_truth": "Canberra"
   },
   {
-    "id": "q33",
-    "domain": "geography",
-    "question": "Mount Everest is located on the border of which two countries?",
-    "ground_truth": "China and Nepal"
-  },
-  {
-    "id": "q34",
-    "domain": "geography",
-    "question": "Which ocean is the largest by surface area?",
-    "ground_truth": "Pacific Ocean"
-  },
-  {
-    "id": "q35",
-    "domain": "geography",
-    "question": "Which U.S. state has the most active volcanoes?",
-    "ground_truth": "Alaska"
-  },
-  {
-    "id": "q36",
-    "domain": "geography",
-    "question": "The Sahara Desert is primarily located on which continent?",
-    "ground_truth": "Africa"
-  },
-  {
-    "id": "q37",
-    "domain": "geography",
-    "question": "Which European country shares borders with the most other countries?",
-    "ground_truth": "Germany"
-  },
-  {
-    "id": "q38",
-    "domain": "geography",
-    "question": "What line divides the Earth into the Northern and Southern Hemispheres?",
-    "ground_truth": "Equator"
-  },
-  {
-    "id": "q39",
-    "domain": "geography",
-    "question": "Which country has the most natural lakes?",
-    "ground_truth": "Canada"
-  },
-  {
-    "id": "q40",
+    "id": "q8",
     "domain": "geography",
     "question": "Which country is both in Europe and Asia?",
     "ground_truth": "Turkey"
   },
   {
-    "id": "q41",
-    "domain": "economics",
-    "question": "What kind of economy is based on supply and demand with little government control?",
-    "ground_truth": "Market Economy"
-  },
-  {
-    "id": "q42",
+    "id": "q9",
     "domain": "economics",
     "question": "What does GDP stand for?",
     "ground_truth": "Gross Domestic Product"
   },
   {
-    "id": "q43",
-    "domain": "economics",
-    "question": "What is the term for a general increase in prices over time?",
-    "ground_truth": "Inflation"
-  },
-  {
-    "id": "q44",
+    "id": "q10",
     "domain": "economics",
     "question": "What do we call the cost of the next best alternative when a choice is made?",
     "ground_truth": "Opportunity Cost"
-  },
-  {
-    "id": "q45",
-    "domain": "economics",
-    "question": "What is the basic economic problem faced by all societies?",
-    "ground_truth": "Scarcity"
-  },
-  {
-    "id": "q46",
-    "domain": "economics",
-    "question": "Which tool is commonly used by central banks to manage inflation?",
-    "ground_truth": "Open market operations"
-  },
-  {
-    "id": "q47",
-    "domain": "economics",
-    "question": "If the demand for a product increases and the supply remains the same, what will likely happen to the price?",
-    "ground_truth": "It will increase"
-  },
-  {
-    "id": "q48",
-    "domain": "economics",
-    "question": "What is the marginal propensity to consume (MPC)?",
-    "ground_truth": "The portion of additional income that is consumed"
-  },
-  {
-    "id": "q49",
-    "domain": "economics",
-    "question": "What would cause a currency to appreciate in a floating exchange rate system?",
-    "ground_truth": "Increase in foreign investment inflows"
-  },
-  {
-    "id": "q50",
-    "domain": "economics",
-    "question": "What does the term \"elasticity of demand\" measure?",
-    "ground_truth": "The responsiveness of quantity demanded to a change in price"
   }
 ]
