@@ -216,10 +216,7 @@ if user_message:
 
             # ID 복사 UI도 함께 저장해보려 했지만 실패할 수 있으므로 직접 렌더링
             st.session_state.chat_history.append(("assistant", "__show_user_id_copy_box__"))
-
-        # 턴 수 증가
-        st.session_state.turn += 1
-        
+            
         # 디버깅 로그 출력 (Streamlit)
         st.markdown("---")
         st.subheader("🧪 Debug Info")
@@ -230,6 +227,8 @@ if user_message:
         st.markdown(f"**🔹 GPT Response:** {gpt_response}")
         st.markdown(f"**🔹 Cosine Similarity:** {similarity_scores[best_match_idx].item():.4f}")
 
+        # 턴 수 증가
+        st.session_state.turn += 1
 
 
 # 채팅 히스토리 출력
