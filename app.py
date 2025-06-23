@@ -218,14 +218,14 @@ if user_message:
             st.session_state.chat_history.append(("assistant", "__show_user_id_copy_box__"))
             
         # 디버깅 로그 출력 (Streamlit)
-        st.markdown("---")
-        st.subheader("🧪 Debug Info")
+        # st.markdown("---")
+        # st.subheader("🧪 Debug Info")
 
-        st.markdown(f"**🔹 User Input:** {user_message}")
-        st.markdown(f"**🔹 Matched Question:** {best_match['question']}")
-        st.markdown(f"**🔹 Matched Ground Truth:** {best_match['ground_truth']}")
-        st.markdown(f"**🔹 GPT Response:** {gpt_response}")
-        st.markdown(f"**🔹 Cosine Similarity:** {similarity_scores[best_match_idx].item():.4f}")
+        # st.markdown(f"**🔹 User Input:** {user_message}")
+        # st.markdown(f"**🔹 Matched Question:** {best_match['question']}")
+        # st.markdown(f"**🔹 Matched Ground Truth:** {best_match['ground_truth']}")
+        # st.markdown(f"**🔹 GPT Response:** {gpt_response}")
+        # st.markdown(f"**🔹 Cosine Similarity:** {similarity_scores[best_match_idx].item():.4f}")
 
         # 턴 수 증가
         st.session_state.turn += 1
